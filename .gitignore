@@ -3,3 +3,5 @@ djangoblog/blog/__pycache__/
 djangoblog/blog/migrations/__pycache__/
 djangoblog/djangoblog/__pycache__/
 djangoblog/venv/
+djangoblog/account/__pycache__/
+djangoblog/account/migrations/__pycache__/

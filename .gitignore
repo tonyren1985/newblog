@@ -5,3 +5,4 @@ djangoblog/djangoblog/__pycache__/
 djangoblog/venv/
 djangoblog/account/__pycache__/
 djangoblog/account/migrations/__pycache__/
+djangoblog/password_reset/__pycache__/

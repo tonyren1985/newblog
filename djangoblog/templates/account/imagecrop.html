@@ -53,9 +53,15 @@ $(window).load(function() {
             type: 'POST',
            data: {"img": img},
           success: function(e){
-             location.href= "{% url 'account:my_infomation' %}"
-          }
-        })
+             //location.href= "{% url 'account:my_infomation' %}"
+              if (e == 1){
+                  parent.location.reload();
+              }else{
+                  alert("sorry, you are not lucky, the picture cannot been " +
+                      "uploaded.")
+              }
+          },
+        });
 	})
 	function getImg(){
 		img = cropper.getDataURL();

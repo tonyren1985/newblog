@@ -49,4 +49,5 @@ urlpatterns = [
     ), name='password_reset_complete'),
     url(r'^my-information/$', views.myself, name="my_infomation"),
     url(r'^edit-my-information/$', views.myself_edit, name="edit_my_infomation"),
+    url(r'^my-image/$', views.my_image, name="my_image"),
 ]

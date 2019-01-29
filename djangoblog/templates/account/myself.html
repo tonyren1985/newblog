@@ -45,7 +45,21 @@
                 edit my information</button></a>
         </div>
         <div class="clo-md-6">
-            <p>picture</p>
+            {% load staticfiles %}
+            <div style="margin-right: 100px">
+                {% if userinfo.photo %}
+                <img  src="{{ userinfo.photo | striptags }}" class="img-rect"
+                      id="my_photo" name="user-face">
+                {% else %}
+                <img name="user-face" src="{% static 'images/ocean.jpg '%}" class="img-rect"
+                     id="my_photo">
+                {% endif %}
+            </div>
+            <div style="margin-right: 100px">
+                <button class="btn btn-primary btn-lg" id="upload_image" onclick="upload_image_layer()">
+                    upload my photo
+                </button>
+            </div>
         </div>
     </div>
 </div>

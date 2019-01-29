@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from .forms import LoginForm, RegistrationForm, UserProfileForm, UserInfoForm, UserForm
 from .models import UserProfile, UserInfo
 
+
 # Create your views here.
 def user_login(request):
     if request.method == "POST":
@@ -48,6 +49,8 @@ def register(request):
                                                          })
 
 # 原书中的路径is   account/login/  网址地址显示is   account/my-infomation/account/login
+
+
 @login_required(login_url="../../account/login/")
 def myself(request):
     user = User.objects.get(username=request.user.username)
@@ -85,11 +88,23 @@ def myself_edit(request):
         return HttpResponseRedirect('../../account/my-information/')
     else:
         user_form = UserForm(instance=request.user)
-        userprofile_form = UserProfileForm(initial={"birth":userprofile.birth, "phone":userprofile.phone})
+        userprofile_form = UserProfileForm(initial={"birth": userprofile.birth, "phone": userprofile.phone})
         userinfo_form = UserInfoForm(initial={"school": userinfo.school, "company": userinfo.company, "profession":
                                                userinfo.profession, "address": userinfo.address,
-                                              "aboutme": userinfo.aboutme})
+                                              "aboutme": userinfo.aboutme })
         return render(request, "account/myself_edit.html", {"user_form": user_form,
                                                                   "userprofile_form": userprofile_form,
                                                                   "userinfo_form": userinfo_form})
+
+
+@login_required(login_url='../../account/login/')
+def my_image(request):
+    if request.method == "POST":
+        img = request.POST['img']
+        userinfo = UserInfo.objects.get(user=request.user.id)
+        userinfo.photo = img
+        userinfo.save()
+        return HttpResponse("1")
+    return render(request, 'account/imagecrop.html',)
+
 

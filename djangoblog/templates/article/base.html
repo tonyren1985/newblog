@@ -1,0 +1,27 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="X-UA-Compatile" content="IE-Edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="sytlesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="http://necolas.github.io/normalize.css/">
+    <link rel="stylesheet" href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css">
+</head>
+<body>
+
+{% include 'article/header.html' %}
+<div class="container">
+    <div class="col-md-2">
+        {% include 'article/leftslider.html' %}
+    </div>
+    <div class="col-md-10">
+        {% block content %}
+        {% endblock %}
+    </div>
+    {% include 'footer.html' %}
+</div>
+</body>
+</html>

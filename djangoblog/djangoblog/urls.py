@@ -22,4 +22,5 @@ urlpatterns = [
     path('blog/', include('blog.urls', namespace='blog')),
     path('account/', include('account.urls', namespace='account')),
     path('password_reset/', include("password_reset.urls", namespace='password_reset')),
+    path('article/', include("article.urls", namespace="article")),
 ]

@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.urls import reverse
 from slugify import slugify
 
+
 # Create your models here.
 class ArticleColumn(models.Model):
     user = models.ForeignKey(User, related_name='article_column', on_delete=models.CASCADE)
@@ -30,9 +31,9 @@ class ArticlePost(models.Model):
     def __str__(self):
         return self.title
 
-    def save(self, *args, **kwargs):
+    def save(self, *args, **kargs):
         self.slug = slugify(self.title)
-        super(ArticlePost, self).save(*args, **kwargs)
+        super(ArticlePost, self).save(*args, **kargs)
 
     def get_absolute_url(self):
         return reverse("article:article_detail", args=[self.id, self.slug])

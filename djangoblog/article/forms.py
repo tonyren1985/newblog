@@ -8,7 +8,7 @@ class ArticleColumnForm(forms.ModelForm):
         fields = ("column",)
 
 
-class ArticleColumnPostForm(forms.ModelForm):
+class ArticlePostForm(forms.ModelForm):
     class Meta:
         model = ArticlePost
         fields = ('title', 'body')

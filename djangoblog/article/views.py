@@ -6,6 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 from django.views.decorators.http import require_POST
 from django.shortcuts import get_object_or_404
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 # Create your views here.
@@ -81,8 +82,20 @@ def article_post(request):
 
 @login_required(login_url='../../account/login/')
 def article_list(request):
-    articles = ArticlePost.objects.filter(author=request.user)
-    return render(request, 'article/column/article_list.html', {'articles': articles})
+    articles_list = ArticlePost.objects.filter(author=request.user)
+    paginator = Paginator(articles_list, 2)
+    page = request.GET.get('page')
+    try:
+        current_page = paginator.page(page)
+        articles = current_page.object_list
+    except PageNotAnInteger:
+        current_page = paginator.page(1)
+        articles = current_page.object_list
+    except EmptyPage:
+        current_page = paginator.page(paginator.num_pages)
+        articles = current_page.object_list
+    return render(request, 'article/column/article_list.html', {'articles': articles,
+                                                                'page': current_page})
 
 
 @login_required(login_url='../../account/login/')
@@ -110,7 +123,7 @@ def redit_article(request, article_id):
     if request.method == "GET":
         article_columns = request.user.article_column.all()
         article = ArticlePost.objects.get(id=article_id)
-        this_article_form = ArticleColumnForm(initial={"title": article.title})
+        this_article_form = ArticlePostForm(initial={"title": article.title})
         this_article_column = article.column
         return render(request, "article/column/redit_article.html", {"article": article,
                                                                      "article_columns": article_columns,

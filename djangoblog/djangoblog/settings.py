@@ -144,3 +144,10 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = "15928007234@163.com"
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
+
+REDIS_HOST = 'localhost'
+
+REDIS_PORT = 6379
+
+REDIS_DB = 0

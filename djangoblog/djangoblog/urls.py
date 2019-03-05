@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from django.views.generic import TemplateView
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -26,4 +28,8 @@ urlpatterns = [
     path('password_reset/', include("password_reset.urls", namespace='password_reset')),
     path('article/', include("article.urls", namespace="article")),
     path('home/', TemplateView.as_view(template_name="home.html")),
+    path('image/', include('image.urls', namespace='image')),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

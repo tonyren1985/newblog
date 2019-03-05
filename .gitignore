@@ -10,4 +10,5 @@ djangoblog/article/__pycache__/
 djangoblog/article/migrations/__pycache__/
 djangoblog/article/templatetags/__pycache__/
 djangoblog/image/__pycache__/
-
+djangoblog/image/migrations/__pycache__/
+djangoblog/.idea/

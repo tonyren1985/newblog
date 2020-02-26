@@ -42,9 +42,9 @@ INSTALLED_APPS = [
     'password_reset',
     'article',
     'image',
-    'sorl.thumbnail'
+    'sorl.thumbnail',
+    'course'
 ]
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
